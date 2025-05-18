@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FA1296232DD9C9C900F561A1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FA1296222DD9C9C900F561A1 /* FirebaseAuth */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		FA1296092DD89F3F00F561A1 /* JunioriOSTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JunioriOSTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1296232DD9C9C900F561A1 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,12 +64,14 @@
 			buildRules = (
 			);
 			dependencies = (
+				FA12961E2DD9C50600F561A1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				FA12960B2DD89F3F00F561A1 /* JunioriOSTest */,
 			);
 			name = JunioriOSTest;
 			packageProductDependencies = (
+				FA1296222DD9C9C900F561A1 /* FirebaseAuth */,
 			);
 			productName = JunioriOSTest;
 			productReference = FA1296092DD89F3F00F561A1 /* JunioriOSTest.app */;
@@ -94,6 +101,10 @@
 			);
 			mainGroup = FA1296002DD89F3F00F561A1;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FA12961B2DD9C49600F561A1 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+				FA1296212DD9C9C900F561A1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FA12960A2DD89F3F00F561A1 /* Products */;
 			projectDirPath = "";
@@ -123,6 +134,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA12961E2DD9C50600F561A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = FA12961D2DD9C50600F561A1 /* SwiftLintBuildToolPlugin */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		FA1296142DD89F4100F561A1 /* Debug */ = {
@@ -324,6 +342,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA12961B2DD9C49600F561A1 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.59.1;
+			};
+		};
+		FA1296212DD9C9C900F561A1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA12961D2DD9C50600F561A1 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA12961B2DD9C49600F561A1 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		FA1296222DD9C9C900F561A1 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA1296212DD9C9C900F561A1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA1296012DD89F3F00F561A1 /* Project object */;
 }

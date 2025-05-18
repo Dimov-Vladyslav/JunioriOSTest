@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>738482820121-ev4alkp6k1qbf1g1qmj4ef47jv5hb71n.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.738482820121-ev4alkp6k1qbf1g1qmj4ef47jv5hb71n</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAbKUFsuRF8lTMXyOhUeriYmy0VLISN7wg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>738482820121</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Dimov.JunioriOSTest</string>
+	<key>PROJECT_ID</key>
+	<string>junior-ios-test-valthsolutions</string>
+	<key>STORAGE_BUCKET</key>
+	<string>junior-ios-test-valthsolutions.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:738482820121:ios:05fd8f136cf26e29664688</string>
+</dict>
+</plist>
