@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import FirebaseCore
+import GoogleSignIn
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
@@ -15,6 +16,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseApp.configure()
         return true
     }
+}
+
+func application(_ app: UIApplication,
+                 open url: URL,
+                 options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    return GIDSignIn.sharedInstance.handle(url)
 }
 
 @main
@@ -33,12 +40,25 @@ struct JunioriOSTestApp: App {
 //        }
 //    }()
 
-    private let diContainer = AppDIContainer()
+    @State private var diContainer = AppDIContainer(firebaseAuthService: FirebaseAuthService())
 
     var body: some Scene {
         WindowGroup {
             SplashView(viewModel: diContainer.makeSplashViewModel())
         }
+        .environment(\.diContainer, diContainer)
 //        .modelContainer(sharedModelContainer)
+    }
+}
+
+// MARK: - ENVIRONMENT KEYS
+struct DIContainerKey: EnvironmentKey {
+    static let defaultValue: AppDIContainer = AppDIContainer(firebaseAuthService: FirebaseAuthService())
+}
+
+extension EnvironmentValues {
+    var diContainer: AppDIContainer {
+        get { self[DIContainerKey.self] }
+        set { self[DIContainerKey.self] = newValue }
     }
 }
