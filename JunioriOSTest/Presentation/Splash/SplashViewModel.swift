@@ -13,12 +13,11 @@ enum ScreenType {
 
 @Observable final class SplashViewModel {
     private let checkAuthUseCase: CheckAuthUseCase
+    var screenType: ScreenType?
 
     init(checkAuthUseCase: CheckAuthUseCase) {
         self.checkAuthUseCase = checkAuthUseCase
     }
-
-    var screenType: ScreenType?
 
     func checkAuth() {
         let isAuthorized = checkAuthUseCase.execute()

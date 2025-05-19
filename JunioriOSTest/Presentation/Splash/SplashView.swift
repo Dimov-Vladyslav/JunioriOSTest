@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct SplashView: View {
+    @Environment(\.diContainer) private var diContainer
     @State var viewModel: SplashViewModel
 
     var body: some View {
         Group {
             switch viewModel.screenType {
             case .login:
-                Text("Login")
+                LoginView(viewModel: diContainer.makeLoginViewModel()) {
+                    viewModel.checkAuth()
+                }
             case .rockets:
                 Text("Rockets")
             default:
-                EmptyView()
+                ProgressView()
             }
         }
         .onAppear(perform: viewModel.checkAuth)
@@ -26,7 +29,7 @@ struct SplashView: View {
 }
 
 #Preview {
-    let diContainer = AppDIContainer()
+    let diContainer = AppDIContainer(firebaseAuthService: FirebaseAuthService())
 
     SplashView(viewModel: diContainer.makeSplashViewModel())
 }
