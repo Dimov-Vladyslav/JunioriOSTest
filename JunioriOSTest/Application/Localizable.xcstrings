@@ -21,8 +21,25 @@
         }
       }
     },
-    "Rockets" : {
-
+    "error" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      }
+    },
+    "ok" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ok"
+          }
+        }
+      }
     },
     "signIn" : {
       "localizations" : {
@@ -40,6 +57,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sign In with Google"
+          }
+        }
+      }
+    },
+    "unknownError" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown error"
           }
         }
       }

@@ -20,7 +20,7 @@ enum LoginStatus: Equatable {
     }
 
     @MainActor
-    func login() async throws {
+    func login() async {
         do {
             status = .loading
 

@@ -27,33 +27,45 @@ func application(_ app: UIApplication,
 @main
 struct JunioriOSTestApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-//    var sharedModelContainer: ModelContainer = {
-//        let schema = Schema([
-//            Item.self
-//        ])
-//        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-//
-//        do {
-//            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-//        } catch {
-//            fatalError("Could not create ModelContainer: \(error)")
-//        }
-//    }()
+    var sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            Rocket.self
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
-    @State private var diContainer = AppDIContainer(firebaseAuthService: FirebaseAuthService())
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+
+    @State private var diContainer: AppDIContainer
+
+    init() {
+        let modelContext = sharedModelContainer.mainContext
+
+        _diContainer = State(initialValue: AppDIContainer(
+            modelContext: modelContext,
+            firebaseAuthService: FirebaseAuthService()
+        ))
+    }
 
     var body: some Scene {
         WindowGroup {
             SplashView(viewModel: diContainer.makeSplashViewModel())
         }
         .environment(\.diContainer, diContainer)
-//        .modelContainer(sharedModelContainer)
+        .modelContainer(sharedModelContainer)
     }
 }
 
 // MARK: - ENVIRONMENT KEYS
 struct DIContainerKey: EnvironmentKey {
-    static let defaultValue: AppDIContainer = AppDIContainer(firebaseAuthService: FirebaseAuthService())
+    static let defaultValue: AppDIContainer = AppDIContainer(
+        modelContext: nil,
+        firebaseAuthService: FirebaseAuthService()
+    )
 }
 
 extension EnvironmentValues {

@@ -21,7 +21,7 @@ struct LoginView: View {
 
             Button {
                 Task {
-                    try await viewModel.login()
+                    await viewModel.login()
                 }
             } label: {
                 Text(LocalizedStringKey("signInWithGoogle"))
@@ -57,7 +57,10 @@ struct LoginView: View {
 }
 
 #Preview {
-    let diContainer = AppDIContainer(firebaseAuthService: FirebaseAuthService())
+    let diContainer = AppDIContainer(
+        modelContext: nil,
+        firebaseAuthService: FirebaseAuthService()
+    )
 
     LoginView(viewModel: diContainer.makeLoginViewModel()) {}
 }
