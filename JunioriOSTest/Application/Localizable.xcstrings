@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "articleLink" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Article"
+          }
+        }
+      }
+    },
     "authError" : {
       "localizations" : {
         "en" : {
@@ -31,12 +41,52 @@
         }
       }
     },
+    "launchDate" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Launch date:"
+          }
+        }
+      }
+    },
+    "launchSuccess" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Success:"
+          }
+        }
+      }
+    },
+    "noLaunches" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No launches"
+          }
+        }
+      }
+    },
     "ok" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ok"
+          }
+        }
+      }
+    },
+    "rocketsList" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rockets List"
           }
         }
       }
@@ -67,6 +117,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unknown error"
+          }
+        }
+      }
+    },
+    "wikiLink" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wikipedia"
           }
         }
       }

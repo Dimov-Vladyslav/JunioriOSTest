@@ -29,7 +29,7 @@ struct JunioriOSTestApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Rocket.self
+            Rocket.self, Launch.self, LaunchImage.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -47,7 +47,8 @@ struct JunioriOSTestApp: App {
 
         _diContainer = State(initialValue: AppDIContainer(
             modelContext: modelContext,
-            firebaseAuthService: FirebaseAuthService()
+            firebaseAuthService: FirebaseAuthService(),
+            networkMonitorService: NetworkMonitorService()
         ))
     }
 
@@ -64,7 +65,8 @@ struct JunioriOSTestApp: App {
 struct DIContainerKey: EnvironmentKey {
     static let defaultValue: AppDIContainer = AppDIContainer(
         modelContext: nil,
-        firebaseAuthService: FirebaseAuthService()
+        firebaseAuthService: FirebaseAuthService(),
+        networkMonitorService: NetworkMonitorService()
     )
 }
 

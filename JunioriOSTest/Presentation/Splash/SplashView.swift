@@ -19,20 +19,14 @@ struct SplashView: View {
                     viewModel.checkAuth()
                 }
             case .rockets:
-                RocketsViewControllerWrapper(viewModel: diContainer.makeRocketsViewModel())
+                RocketsViewControllerWrapper(
+                    viewModel: diContainer.makeRocketsViewModel(),
+                    diContainer: diContainer
+                )
             default:
                 ProgressView()
             }
         }
         .onAppear(perform: viewModel.checkAuth)
     }
-}
-
-#Preview {
-    let diContainer = AppDIContainer(
-        modelContext: nil,
-        firebaseAuthService: FirebaseAuthService()
-    )
-
-    SplashView(viewModel: diContainer.makeSplashViewModel())
 }

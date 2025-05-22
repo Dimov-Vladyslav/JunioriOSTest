@@ -10,22 +10,32 @@ import Combine
 
 struct RocketsViewControllerWrapper: UIViewControllerRepresentable {
     let viewModel: RocketsViewModel
+    let diContainer: AppDIContainer
 
-    func makeUIViewController(context: Context) -> RocketsViewController {
-        RocketsViewController(viewModel: viewModel)
+    func makeUIViewController(context: Context) -> UIViewController {
+        let rocketsVC = RocketsViewController(
+            viewModel: viewModel,
+            diContainer: diContainer
+        )
+        return UINavigationController(rootViewController: rocketsVC)
     }
 
-    func updateUIViewController(_ uiViewController: RocketsViewController, context: Context) {}
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
 final class RocketsViewController: UIViewController {
     private let viewModel: RocketsViewModel
+    private let diContainer: AppDIContainer
     private let tableView = UITableView()
     private let activityIndicator = UIActivityIndicatorView(style: .large)
     private var cancellables = Set<AnyCancellable>()
 
-    init(viewModel: RocketsViewModel) {
+    init(
+        viewModel: RocketsViewModel,
+        diContainer: AppDIContainer
+    ) {
         self.viewModel = viewModel
+        self.diContainer = diContainer
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -33,8 +43,11 @@ final class RocketsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = NSLocalizedString("rocketsList", comment: "")
+        navigationController?.navigationBar.prefersLargeTitles = true
         setupViews()
         bindViewModel()
+        tableView.delegate = self
 
         Task {
             await viewModel.fetchRockets()
@@ -85,6 +98,7 @@ final class RocketsViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension RocketsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if case let .fetched(rockets) = viewModel.rocketsStatus {
@@ -106,5 +120,21 @@ extension RocketsViewController: UITableViewDataSource {
         }
         cell.configure(rocket)
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension RocketsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard case let .fetched(rockets) = viewModel.rocketsStatus else { return }
+        let rocket = rockets[indexPath.row]
+
+        let launchesView = LaunchesListView(viewModel: diContainer.makeLaunchesViewModel(for: rocket))
+        let hostingController = UIHostingController(rootView: launchesView)
+        hostingController.title = rocket.name
+
+        navigationController?.pushViewController(hostingController, animated: true)
+
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
