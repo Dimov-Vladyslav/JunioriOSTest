@@ -10,13 +10,16 @@ import SwiftData
 final class AppDIContainer {
     let modelContext: ModelContext?
     let firebaseAuthService: FirebaseAuthService
+    let networkMonitorService: NetworkMonitorService
 
     init(
         modelContext: ModelContext?,
-        firebaseAuthService: FirebaseAuthService
+        firebaseAuthService: FirebaseAuthService,
+        networkMonitorService: NetworkMonitorService
     ) {
         self.modelContext = modelContext
         self.firebaseAuthService = firebaseAuthService
+        self.networkMonitorService = networkMonitorService
     }
 
     func makeSplashViewModel() -> SplashViewModel {
@@ -40,9 +43,35 @@ final class AppDIContainer {
         )
         let rocketUseCase = RocketUserCaseImpl(
             rocketRepository: rocketRepository,
-            networkMonitorService: NetworkMonitorService()
+            networkMonitorService: networkMonitorService
         )
         let rocketVM = RocketsViewModel(rocketUseCase: rocketUseCase)
         return rocketVM
+    }
+
+    func makeLaunchesViewModel(for rocket: Rocket) -> LaunchesListViewModel {
+        let imageCacheService = ImageCacheService(modelContext: modelContext)
+        let launchRepository = LaunchRepositoryImpl(
+            launchesAPIService: LaunchesAPIService(),
+            launchCacheService: LaunchCacheService(modelContext: modelContext)
+        )
+        let launchUseCase = LaunchUseCaseImpl(
+            launchRepository: launchRepository,
+            networkMonitorService: networkMonitorService
+        )
+        let imageRepository = ImageRepositoryImpl(
+            imageService: ImageService(),
+            imageCacheService: imageCacheService
+        )
+        let imageUseCase = ImageUseCaseImpl(
+            imageRepository: imageRepository,
+            imageCacheService: imageCacheService
+        )
+        let launchesVM = LaunchesListViewModel(
+            rocket: rocket,
+            launchUseCase: launchUseCase,
+            imageUseCase: imageUseCase
+        )
+        return launchesVM
     }
 }

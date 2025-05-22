@@ -55,12 +55,3 @@ struct LoginView: View {
         }
     }
 }
-
-#Preview {
-    let diContainer = AppDIContainer(
-        modelContext: nil,
-        firebaseAuthService: FirebaseAuthService()
-    )
-
-    LoginView(viewModel: diContainer.makeLoginViewModel()) {}
-}

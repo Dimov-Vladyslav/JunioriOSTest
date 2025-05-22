@@ -13,11 +13,9 @@ import SwiftUI
 enum AuthError: LocalizedError {
     case badIdToken
 
-//    var errorDescription: String? {
     var errorDescription: LocalizedStringKey? {
         switch self {
         case .badIdToken:
-//            return "No ID token."
             return LocalizedStringKey("badIDToken")
         }
     }

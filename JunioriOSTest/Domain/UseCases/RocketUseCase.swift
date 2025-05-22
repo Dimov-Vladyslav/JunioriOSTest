@@ -11,11 +11,11 @@ protocol RocketUseCase {
 
 final class RocketUserCaseImpl: RocketUseCase {
     private let rocketRepository: RocketRepository
-    private let networkMonitorService: NetworkMonitorService
+    private let networkMonitorService: NetworkMonitorServiceProtocol
 
     init(
         rocketRepository: RocketRepository,
-        networkMonitorService: NetworkMonitorService
+        networkMonitorService: NetworkMonitorServiceProtocol
     ) {
         self.rocketRepository = rocketRepository
         self.networkMonitorService = networkMonitorService
